@@ -1,3 +1,5 @@
+package DAY01;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -20,7 +22,7 @@ public class P1759 {
 			G[i] = sc.next();
 			parent[i] = -1; // parent: NIL
 		}
-		Arrays.sort(G); // ¿À¸§Â÷¼ø Á¤·Ä
+		Arrays.sort(G); // ì˜¤ë¦„ì°¨ìˆœ ì •ë ¬
 		
 		System.out.println(dfs(0, 0, ""));
 	}

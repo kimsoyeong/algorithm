@@ -1,3 +1,5 @@
+package DAY01;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -30,8 +32,8 @@ public class P3055 {
 		R = sc.nextInt();
 		C = sc.nextInt();
 
-		char[][] map = new char[R][C];   // Áöµµ
-		dp = new int[R][C]; // ¹æ¹® ¿©ºÎ) ¹æ¹®x -> 0
+		char[][] map = new char[R][C];   // ì§€ë„
+		dp = new int[R][C]; // ë°©ë¬¸ ì—¬ë¶€) ë°©ë¬¸x -> 0
 		
 		q = new ArrayList<>();
 		
@@ -43,10 +45,10 @@ public class P3055 {
 			for(int j=0; j < C; j++) {
 				map[i][j] = line.charAt(j);
 				switch(map[i][j]) {
-				case '*': // ¹°
+				case '*': // ë¬¼
 					q.add(new Node(i,j, '*'));
 					break;
-				case 'S': // °í½¿µµÄ¡ÀÇ À§Ä¡
+				case 'S': // ê³ ìŠ´ë„ì¹˜ì˜ ìœ„ì¹˜
 					sy = i;
 					sx = j;
 					break;
@@ -57,35 +59,35 @@ public class P3055 {
 		q.add(new Node(sy, sx, 'S'));
 		
 		while(!q.isEmpty()) {
-			// 1. Å¥¿¡¼­ ²¨³»¿È -> S, ., D, *
+			// 1. íì—ì„œ êº¼ë‚´ì˜´ -> S, ., D, *
 			Node p = q.remove(0);
-			// 2. ¸ñÀûÁöÀÎ°¡? -> D
+			// 2. ëª©ì ì§€ì¸ê°€? -> D
 			if(p.type == 'D') {
 				System.out.println(dp[p.row][p.col]);
 				foundAnswer = true;
 				break;
 			}
-			// 3. ¿¬°áµÈ °÷À» ¼øÈ¸ -> ÁÂ, ¿ì, À§, ¾Æ·¡
+			// 3. ì—°ê²°ëœ ê³³ì„ ìˆœíšŒ -> ì¢Œ, ìš°, ìœ„, ì•„ë˜
 			for(int i=0; i<4; i++) {
 				int ty = p.row + DY[i];
 				int tx = p.col + DX[i];
-				// 4. °¥ ¼ö ÀÖ´Â °¡? ( °øÅë ) -> ¸ÊÀ» ¹ş¾î³ªÁö ¾Ê°í
+				// 4. ê°ˆ ìˆ˜ ìˆëŠ” ê°€? ( ê³µí†µ ) -> ë§µì„ ë²—ì–´ë‚˜ì§€ ì•Šê³ 
 				if(0 <= ty && ty < R && 0 <= tx && tx < C) {
 					if(p.type == '.' || p.type == 'S') { 
-						// 4. °¥ ¼ö ÀÖ´Â °¡? ( °í½¿µµÄ¡ ) -> ¸ÊÀ» ¹ş¾î³ªÁö ¾Ê°í, . or D, ¹æ¹®ÇÏÁö ¾ÊÀº °÷
+						// 4. ê°ˆ ìˆ˜ ìˆëŠ” ê°€? ( ê³ ìŠ´ë„ì¹˜ ) -> ë§µì„ ë²—ì–´ë‚˜ì§€ ì•Šê³ , . or D, ë°©ë¬¸í•˜ì§€ ì•Šì€ ê³³
 						if((map[ty][tx] == '.' || map[ty][tx] == 'D') && dp[ty][tx] == 0) {
-							// 5. Ã¼Å©ÀÎ -> dp¿¡ ÇöÀç + 1À» ±â·Ï
+							// 5. ì²´í¬ì¸ -> dpì— í˜„ì¬ + 1ì„ ê¸°ë¡
 							dp[ty][tx] = dp[p.row][p.col] + 1;
-							// 6. Å¥¿¡ ³ÖÀ½
+							// 6. íì— ë„£ìŒ
 							q.add(new Node(ty, tx, map[ty][tx]));
 						}
 						
 					} else if(p.type == '*') { 
-						// 4. °¥ ¼ö ÀÖ´Â °¡? ( ¹° ) .
+						// 4. ê°ˆ ìˆ˜ ìˆëŠ” ê°€? ( ë¬¼ ) .
 						if(map[ty][tx] == '.' || map[ty][tx] == 'S') {
-							// 5. Ã¼Å©ÀÎ -> Áöµµ¿¡ * Ç¥±â
+							// 5. ì²´í¬ì¸ -> ì§€ë„ì— * í‘œê¸°
 							map[ty][tx] ='*';
-							// 6. Å¥¿¡ ³ÖÀ½
+							// 6. íì— ë„£ìŒ
 							q.add(new Node(ty, tx, map[ty][tx]));
 						}
 						
