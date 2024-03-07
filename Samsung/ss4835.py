@@ -5,10 +5,10 @@ for test_case in range(1, T + 1):
 
     nums = list(map(int, input().strip().split()))
 
-    max_sum = sum(nums[0: M])
-    min_sum = sum(nums[0: M])
-    for i in range(1, N - (M - 1)):
-        max_sum = max(max_sum, sum(nums[i: i + M]))
-        min_sum = min(min_sum, sum(nums[i: i + M]))
+    sub_sum = max_sum = min_sum = sum(nums[0: M])
+    for i in range(M, N):
+        sub_sum = sub_sum + nums[i] - nums[i - M]
+        max_sum = max(max_sum, sub_sum)
+        min_sum = min(min_sum, sub_sum)
 
     print(f"#{test_case} {max_sum - min_sum}")
