@@ -4,7 +4,7 @@ for test_case in range(1, T + 1):
     N = int(input())
     price = list(map(int, input().split()))
 
-    pocket = 0
+    # pocket = 0
     money = 0
 
     max_price = price[-1]
