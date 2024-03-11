@@ -3,7 +3,7 @@
 
 - 백준
 - 구름level
-- 프로그래머스
+- SWEA: 삼성 SW Expert Academy
 
 
 <br>
