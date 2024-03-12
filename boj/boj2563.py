@@ -9,8 +9,8 @@ for _ in range(N):
         for j in range(A, A + 10):
             arr[i][j] = 1
 
-    sum_blk = 0
-    for row in arr:
-        sum_blk += row.count(1)
+sum_blk = 0
+for row in arr:
+    sum_blk += row.count(1)
 
 print(sum_blk)
