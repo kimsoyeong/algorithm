@@ -18,12 +18,19 @@ for i in range(1, 101):
         if arr[i][j] != arr[i][j - 1]:
             dulae += 1
 
-# 열 방향 순회
-for j in range(1, 101):
-    for i in range(1, 102):
-        # (i) 위쪽 값(i - 1)과 비교하므로, 100번째 입력의 위쪽 가장자리를 확인하려면 101번 index까지 확인해야 한다.
-        if arr[i][j] != arr[i - 1][j]:
+# 3rd solution: Transpose 후 행 방향 순회
+arr = list(zip(*arr))  # 전치행렬: 수정 필요시 list(map(list, zip(*arr)))
+for i in range(1, 101):
+    for j in range(1, 102):
+        if arr[i][j] != arr[i][j - 1]:
             dulae += 1
+
+# 2nd solution: 열 방향 순회
+# for j in range(1, 101):
+#     for i in range(1, 102):
+#         # (i) 위쪽 값(i - 1)과 비교하므로, 100번째 입력의 위쪽 가장자리를 확인하려면 101번 index까지 확인해야 한다.
+#         if arr[i][j] != arr[i - 1][j]:
+#             dulae += 1
 
 # 1st solution: 전체 순회
 # # 상, 하, 좌, 우
