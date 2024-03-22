@@ -8,16 +8,9 @@ for _ in range(P):
 
     step = 0
 
-    N = len(heights)
-
-    for i in range(1, N):
-        curr = heights[i]
-
-        cnt = 0
-        for j in range(i - 1, -1, -1):
-            if heights[j] > curr:
-                cnt += 1
-
-        step += cnt
+    for i in range(1, 20):
+        for j in range(i):
+            if heights[j] > heights[i]:
+                step += 1
 
     print(T, step)
