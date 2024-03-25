@@ -1,6 +1,6 @@
 H, W = map(int, input().split())
 
-answer = [[-1]*W for _ in range(H)]
+answer = [[-1] * W for _ in range(H)]
 for i in range(H):
     clouds = input()
     for j in range(W):
