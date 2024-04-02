@@ -4,6 +4,10 @@ T = int(input())
 def dfs(n, sm, cnt):
     global ans  # 전역 변수 선언
 
+    # 가지치기: 가장 마지막에 고민.. 가장 위에서 처리
+    if sm > K:  # 이미 초과.. (이 문제는 음수가 없으므로)
+        return
+
     # 종료 조건 (n(index)에 관련)
     if n == 12:  # 끝까지 왔을 때
         # 정답 처리
