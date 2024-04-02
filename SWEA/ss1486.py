@@ -6,6 +6,10 @@ def dfs(n, tower_height, cnt):
     """
     global ans
 
+    # 가지치기
+    if tower_height - B >= ans:
+        return
+
     if n == N:
         if tower_height >= B:
             ans = min(ans, tower_height- B)
