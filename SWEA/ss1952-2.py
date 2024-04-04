@@ -6,6 +6,7 @@ for test_case in range(1, T + 1):
 
     arr = [0] * 13
     for i in range(1, 13):
+        # 가능한 4가지 방식
         mn = arr[i-1] + lst[i] * day  # 이전 달까지 비용 + 일일권 비용
         mn = min(mn, arr[i - 1] + mon)  # 월간권 비용 (비교)
         if i >= 3:
