@@ -14,10 +14,8 @@ def dfs(i, j, cnt, tour, d):
     for idx, (di, dj) in enumerate(directions[d: d + 2]):
         ni, nj = i + di, j + dj
         if 0 <= ni < N and 0 <= nj < N:
-            if (v[ni][nj] == 0 and arr[ni][nj] not in tour) or (ni == si and nj == sj):
-                v[ni][nj] = 1
+            if (arr[ni][nj] not in tour) or (ni == si and nj == sj):
                 dfs(ni, nj, cnt + 1, tour + [arr[ni][nj]], d + idx)
-                v[ni][nj] = 0
 
 
 T = int(input())
@@ -26,7 +24,7 @@ for test_case in range(1, T + 1):
     N = int(input())
 
     arr = [list(map(int, input().split())) for _ in range(N)]
-    v = [[0] * N for _ in range(N)]
+    # visited 배열 사용 X: 어차피 방향 전환하면서, 시작점 외에 중복 방문은 불가능하다.
     ans = 0
 
     for i in range(N):
