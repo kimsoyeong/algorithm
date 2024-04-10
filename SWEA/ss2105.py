@@ -4,10 +4,12 @@ directions = [(1, 1), (1, -1), (-1, -1), (-1, 1)]
 def dfs(i, j, cnt, tour, d):
     global si, sj, ans
 
-    if d >= 3:
-        if i == si and j == sj:
-            ans = max(ans, cnt)
-            return
+    if d > 3:  # 가지치기
+        return
+
+    if d == 3 and i == si and j == sj:  # 정답 처리
+        ans = max(ans, cnt)
+        return
 
     for idx, (di, dj) in enumerate(directions[d: d + 2]):
         ni, nj = i + di, j + dj
