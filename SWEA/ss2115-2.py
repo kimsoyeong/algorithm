@@ -18,16 +18,20 @@ for test_case in range(1, T + 1):
     N, M, C = map(int, input().split())
     arr = [list(map(int, input().split())) for _ in range(N)]
 
-    ans = mx = sm1 = 0
-    for si in range(N):
-        for sj in range(N - M + 1):
+    ans = 0
+    mem = [[0] * N for _ in range(N)]
+    # 각 위치의 가능한 최대값을 한 번 저장
+    # 동일한 위치에서 dfs 호출로 인한 중복 연산을 방지.
+    for i in range(N):
+        for j in range(N - M + 1):
             mx = 0
-            dfs(0, si, sj, 0, 0)  # 일꾼 1
-            sm1 = mx
-            for di in range(si, N):
-                for dj in range(sj + M if di == si else 0, N - M + 1):
-                    mx = 0
-                    dfs(0,di, dj, 0, 0)  # 가능한 일꾼 2
-                    ans = max(ans, sm1 + mx)
+            dfs(0, i, j, 0, 0)
+            mem[i][j] = mx
+
+    for i1 in range(N):
+        for j1 in range(N - M + 1):
+            for i2 in range(i1, N):
+                for j2 in range(j1 + M if i1 == i2 else 0, N - M + 1):
+                    ans = max(ans, mem[i1][j1] + mem[i2][j2])
 
     print(f"#{test_case} {ans}")
