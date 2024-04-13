@@ -1,5 +1,7 @@
 T = int(input())
 
+cost = [(k*k + (k-1)*(k-1)) for k in range(40)]  # 가능한 운영비용 미리 계산
+
 for test_case in range(1, T + 1):
     N, M = map(int, input().split())
 
@@ -9,12 +11,10 @@ for test_case in range(1, T + 1):
     for i in range(N):
         for j in range(N):
             # i, j: 현재 방문 중인 집의 좌표
-            k = scale = cost = 1
+            k = scale = 1
 
-            while scale <= N*2:  # scale이 최대 가능 크기보다 작은 동안
-                cost = (k ** 2) + ((k - 1) ** 2)  # 운영 비용
+            while scale < N*2:  # scale이 최대 가능 크기보다 작은 동안
                 scale = 2*k - 1  # 마름모의 크기(높이 == 너비)
-
                 house = 0  # 마름모 내 집의 수
 
                 # 마름모 탐색
@@ -32,11 +32,8 @@ for test_case in range(1, T + 1):
                             if arr[ni][nj] == 1:  # 집이 있으면
                                 house += 1
 
-                # 수익 계산
-                profit = M * house
-
                 # 정답 갱신
-                if cost <= profit:
+                if cost[k] <= M * house:  # 비용 <= 수익
                     ans = max(ans, house)
 
                 # k 갱신
